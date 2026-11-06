@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#15181d">
+  <title>ATLAS PDF Plans</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><strong>ATLAS</strong><span>PDF PLANS</span></div>
+    <div class="top-actions">
+      <button id="openBtn" class="primary">OPEN PDF</button>
+      <input id="fileInput" type="file" accept="application/pdf,.pdf" hidden>
+      <button id="sheetsBtn" disabled>SHEETS</button>
+      <button id="backBtn" disabled>← BACK</button>
+      <button id="linkBtn" disabled aria-pressed="false">LINK</button>
+    </div>
+  </header>
+
+  <main>
+    <aside id="sheetPanel" class="sheet-panel" aria-label="Plan sheets">
+      <div class="panel-head">
+        <div><strong>Plan sheets</strong><small id="scanStatus">Open a PDF plan set</small></div>
+        <button id="closeSheetsBtn" class="icon-btn">✕</button>
+      </div>
+      <label class="search-box">Search sheets
+        <input id="sheetSearch" type="search" placeholder="A1.1, floor plan…">
+      </label>
+      <div id="sheetList" class="sheet-list"></div>
+    </aside>
+
+    <section class="viewer-shell">
+      <div class="viewer-toolbar">
+        <button id="prevBtn" disabled>‹</button>
+        <label class="page-jump"><span>PAGE</span><input id="pageInput" type="number" min="1" value="1" disabled><span id="pageTotal">/ 0</span></label>
+        <label class="sheet-name"><span>SHEET</span><input id="sheetName" type="text" value="" placeholder="Unknown" disabled></label>
+        <button id="nextBtn" disabled>›</button>
+        <button id="zoomOutBtn" disabled>−</button>
+        <button id="fitBtn" disabled>FIT</button>
+        <button id="zoomInBtn" disabled>+</button>
+        <button id="rotateBtn" disabled>↻</button>
+      </div>
+
+      <div id="viewer" class="viewer">
+        <div id="emptyState" class="empty-state">
+          <div class="atlas-mark">A</div>
+          <h1>Open a plan set</h1>
+          <p>Navigate multipage PDFs and tap sheet references to jump between drawings.</p>
+          <button id="emptyOpenBtn" class="primary large">OPEN PDF</button>
+        </div>
+        <div id="stage" class="stage" hidden>
+          <canvas id="pdfCanvas"></canvas>
+          <div id="linkLayer" class="link-layer"></div>
+          <div id="drawBox" class="draw-box" hidden></div>
+        </div>
+      </div>
+
+      <div id="statusBar" class="status-bar">
+        <span id="fileStatus">No PDF loaded</span>
+        <span id="zoomStatus">100%</span>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="linkDialog">
+    <form method="dialog" id="linkForm">
+      <h2>Create plan link</h2>
+      <p>Select the destination sheet or page for this area.</p>
+      <label>Destination
+        <select id="linkDestination"></select>
+      </label>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button id="saveLinkBtn" class="primary" value="default">Save link</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>
