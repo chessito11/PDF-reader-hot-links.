@@ -1,6 +1,6 @@
-import * as pdfjsLib from './vendor/pdf.min.mjs';
+import * as pdfjsLib from './pdf.min.mjs';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = './vendor/pdf.worker.min.mjs';
+pdfjsLib.GlobalWorkerOptions.workerSrc = './pdf.worker.min.mjs';
 
 const $ = id => document.getElementById(id);
 const el = {

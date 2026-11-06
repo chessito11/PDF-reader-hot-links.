@@ -1,4 +1,4 @@
-# ATLAS PDF Plans v0.1
+# ATLAS PDF Plans v0.2
 
 A separate, installable PDF plan reader. It does not share files or saved data with ATLAS DXF Estimating.
 
@@ -16,10 +16,14 @@ A separate, installable PDF plan reader. It does not share files or saved data w
 
 ## Run or publish
 
-The app uses JavaScript modules and a service worker, so serve the folder over HTTPS (or localhost). Publish the complete folder without removing `vendor/`.
+The app uses JavaScript modules and a service worker, so serve the complete folder over HTTPS (or localhost). Keep `pdf.min.mjs` and `pdf.worker.min.mjs` beside `app.mjs` in the repository root.
 
 Open `index.html`, choose **OPEN PDF**, and select a plan set. Automatic link detection works best with text/vector PDFs. Use **LINK** for scanned drawings or callouts that are not recognized.
 
-## Important v0.1 limit
+## v0.2 GitHub Pages fix
+
+The PDF engine and worker now load directly from the repository root. This matches GitHub's web-upload layout and fixes an inactive **OPEN PDF** button caused by a missing `vendor/` folder.
+
+## Important v0.2 limit
 
 The application shell works offline after it has loaded once. The selected PDF remains private in the browser session and is not uploaded. Persistent saved PDF projects will be added in a later version.
